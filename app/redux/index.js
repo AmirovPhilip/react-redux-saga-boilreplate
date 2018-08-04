@@ -9,6 +9,7 @@ import { userReducer, userSaga } from './modules'
 export const history = createBrowserHistory()
 
 export const sagaMiddleware = createSagaMiddleware()
+const reactRouterMiddleware = routerMiddleware(history)
 
 export const reducer = combineReducers({
   user: userReducer,
@@ -21,4 +22,4 @@ export function* rootSaga() {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose // eslint-disable-line no-underscore-dangle
 
 export const configureStore = () =>
-  createStore(reducer, composeEnhancers(applyMiddleware(routerMiddleware, sagaMiddleware)))
+  createStore(reducer, composeEnhancers(applyMiddleware(reactRouterMiddleware, sagaMiddleware)))
